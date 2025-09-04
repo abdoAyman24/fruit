@@ -30,11 +30,13 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.8
   dots_indicator: ^4.0.1
+  firebase_core: ^4.1.0
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^2.2.0
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_launcher_icons: "^0.14.4"
@@ -70,18 +72,15 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: cairo
-       fonts:
-         - asset: assets/fonts/Cairo-Regular.ttf
-         - asset: assets/fonts/Cairo-Medium.ttf
-           weight: 500
-         - asset: assets/fonts/Cairo-SemiBold.ttf
-           weight: 600
-         - asset: assets/fonts/Cairo-Bold.ttf
-           weight: 700
-
-
-  #
+    - family: cairo
+      fonts:
+        - asset: assets/fonts/Cairo-Regular.ttf
+        - asset: assets/fonts/Cairo-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Cairo-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Cairo-Bold.ttf
+          weight: 700
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
 flutter_launcher_icons:

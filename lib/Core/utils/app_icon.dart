@@ -6,9 +6,25 @@ class Assets {
   /// assets/image/app_icon.png
   static const String imageAppIcon = "assets/image/app_icon.png";
 
+  /// Assets for imageAppleIcon
+  /// assets/image/appleIcon.svg
+  static const String imageAppleIcon = "assets/image/appleIcon.svg";
+
   /// Assets for imageBottomImage
   /// assets/image/bottomImage.svg
   static const String imageBottomImage = "assets/image/bottomImage.svg";
+
+  /// Assets for imageCheckIcon
+  /// assets/image/checkIcon.svg
+  static const String imageCheckIcon = "assets/image/checkIcon.svg";
+
+  /// Assets for imageFaceBookIcon
+  /// assets/image/faceBookIcon.svg
+  static const String imageFaceBookIcon = "assets/image/faceBookIcon.svg";
+
+  /// Assets for imageGoogleIcon
+  /// assets/image/googleIcon.svg
+  static const String imageGoogleIcon = "assets/image/googleIcon.svg";
 
   /// Assets for imageLogoImage
   /// assets/image/logoImage.svg

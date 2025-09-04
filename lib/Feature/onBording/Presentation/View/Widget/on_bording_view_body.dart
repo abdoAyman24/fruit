@@ -1,8 +1,11 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:fruit_hup/Core/Widget/custom_button.dart';
+import 'package:fruit_hup/Core/services/shared_prefrences_singlton.dart';
 import 'package:fruit_hup/Core/utils/app_color.dart';
+import 'package:fruit_hup/Feature/Auth/Presentation/View/log_in.dart';
 import 'package:fruit_hup/Feature/onBording/Presentation/View/Widget/on_bording_page_view.dart';
+import 'package:fruit_hup/constance.dart';
 
 class OnBordingViewBody extends StatefulWidget {
   const OnBordingViewBody({super.key});
@@ -54,7 +57,13 @@ class _OnBordingViewBodyState extends State<OnBordingViewBody> {
 
          currentIndex==1 ? Padding(
            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-           child: CusttomButtom(onPressed: () {}, text: 'ابدأ الان'  ),
+           child: CusttomButtom(onPressed: () {
+            SharedPreferencesSingleton.setBool(
+                      KisOnBordingViewSeen,
+                      true,
+                    );
+            Navigator.pushReplacementNamed(context, LogIn.routeName);
+           }, text: 'ابدأ الان'  ),
          ) : const SizedBox(height: 54,),
           SizedBox(height: 55),
         ],

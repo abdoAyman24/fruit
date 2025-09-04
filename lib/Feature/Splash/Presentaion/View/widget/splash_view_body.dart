@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruit_hup/Core/services/shared_prefrences_singlton.dart';
 import 'package:fruit_hup/Core/utils/app_icon.dart';
+import 'package:fruit_hup/Feature/Auth/Presentation/View/log_in.dart';
 import 'package:fruit_hup/Feature/onBording/Presentation/View/on_bording_view.dart';
+import 'package:fruit_hup/constance.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -38,7 +41,17 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   }
   void navigatorToOnBoarding() {
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, OnBordingView.routeName);
+      SharedPreferencesSingleton.getBool(
+                      KisOnBordingViewSeen, 
+                    );
+
+      if(SharedPreferencesSingleton.getBool(
+                      KisOnBordingViewSeen, 
+                    ) == true){
+        Navigator.pushReplacementNamed(context, LogIn.routeName);
+      } else {
+        Navigator.pushReplacementNamed(context, OnBordingView.routeName);
+      }
     });
   }
 }
