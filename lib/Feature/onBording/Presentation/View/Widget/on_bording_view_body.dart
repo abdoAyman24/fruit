@@ -54,7 +54,7 @@ class _OnBordingViewBodyState extends State<OnBordingViewBody> {
 
          currentIndex==1 ? Padding(
            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-           child: CusttomButtom(onPressed: () {}, text: 'ابدأ الان'),
+           child: CusttomButtom(onPressed: () {}, text: 'ابدأ الان'  ),
          ) : const SizedBox(height: 54,),
           SizedBox(height: 55),
         ],
