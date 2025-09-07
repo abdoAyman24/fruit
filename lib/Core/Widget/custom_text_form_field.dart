@@ -7,16 +7,24 @@ class CustomTextFormField extends StatelessWidget {
     super.key,
     required this.hint,
     required this.keyboardType,
-    this.widget,
+    this.widget, this.onSave,  this.obscureText =false,
   });
-
+final bool obscureText ;
   final String hint;
   final TextInputType keyboardType;
   final Widget? widget;
+  final void Function(String?)? onSave ;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-    
+      obscureText: obscureText,
+      onSaved:onSave ,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'يجب ملئ هذا الحقل';
+        }
+        return null;
+      },
       cursorColor: appColor.primary,
       showCursor: true,
       keyboardType: keyboardType,

@@ -7,14 +7,14 @@ part 'sin_up_state.dart';
 
 class SinUpCubit extends Cubit<SinUpState> {
   final AuthRepo authRepo;
-  SinUpCubit(this.authRepo) : super(SinUpInitial());
+  SinUpCubit(this.authRepo) : super(SignUpInitial());
 
   Future<void> CreateUserWithEmaiAndPAssword({
     required String email,
     required String password,
     required String name,
   }) async {
-    emit(SinUpLoading());
+    emit(SignUpLoading());
 
     final result = await authRepo.createUserWithEmaiAndPassword(
       email,
@@ -22,10 +22,13 @@ class SinUpCubit extends Cubit<SinUpState> {
       name,
     );
 
-    result.fold((L) {
-      emit(SinUpFailure(L.message));
-    }, (R) {
-      emit(SinUpSucces(R));
-    });
+    result.fold(
+      (L) {
+        emit(SignUpFailure(L.message));
+      },
+      (R) {
+        emit(SinUpSucces(R));
+      },
+    );
   }
 }
