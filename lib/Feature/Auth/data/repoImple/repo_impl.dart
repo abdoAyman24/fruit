@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:fruit_hup/Core/error/auth_faluire_service.dart';
 import 'package:fruit_hup/Core/error/exception.dart';
@@ -25,7 +27,28 @@ class RepoImpl extends AuthRepo {
     } on CustomException catch (e) {
       return Left(ServerFailure(message: e.message));
     } catch (e) {
+      log(
+        'Exception in RepoImpl on Create Email And Password : ${e.toString()}',
+      );
       return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> SignInWithEmaiAndPassword(
+    String email,
+    String password,
+  ) async {
+    try {
+      var user = await firebaseAuthService.SignInWithEmailAndPassword(
+        email,
+        password,
+      );
+      return Right(UserModel.fromFirebase(user, ''));
+    } on CustomException catch (e) {
+      return left(ServerFailure(message: e.message));
+    } catch (e) {
+      return left(ServerFailure(message: e.toString()));
     }
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fruit_hup/Core/Widget/custom_button.dart';
 import 'package:fruit_hup/Core/services/shared_prefrences_singlton.dart';
 import 'package:fruit_hup/Core/utils/app_color.dart';
-import 'package:fruit_hup/Feature/Auth/Presentation/View/log_in.dart';
+import 'package:fruit_hup/Feature/Auth/Presentation/View/sig_in_body.dart';
 import 'package:fruit_hup/Feature/onBording/Presentation/View/Widget/on_bording_page_view.dart';
 import 'package:fruit_hup/constance.dart';
 

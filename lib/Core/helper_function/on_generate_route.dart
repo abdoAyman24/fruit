@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruit_hup/Feature/Auth/Presentation/View/log_in.dart';
+import 'package:fruit_hup/Feature/Auth/Presentation/View/sig_in_body.dart';
 import 'package:fruit_hup/Feature/Auth/Presentation/View/sin_up.dart';
 import 'package:fruit_hup/Feature/Splash/Presentaion/View/splash_view.dart';
 import 'package:fruit_hup/Feature/onBording/Presentation/View/on_bording_view.dart';

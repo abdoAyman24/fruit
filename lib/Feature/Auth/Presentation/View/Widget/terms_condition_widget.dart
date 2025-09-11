@@ -4,8 +4,8 @@ import 'package:fruit_hup/Core/utils/app_text_styles.dart';
 import 'package:fruit_hup/Feature/Auth/Presentation/View/Widget/custom_check_box.dart';
 
 class TermsConditionWidget extends StatefulWidget {
-  const TermsConditionWidget({super.key});
-
+  const TermsConditionWidget({super.key, required this.onChange});
+  final ValueChanged<bool> onChange;
   @override
   State<TermsConditionWidget> createState() => _TermsConditionWidgetState();
 }
@@ -22,6 +22,7 @@ class _TermsConditionWidgetState extends State<TermsConditionWidget> {
             setState(() {
               isTermsCondition = value;
             });
+            widget.onChange(value);
           },
         ),
         SizedBox(width: 16),

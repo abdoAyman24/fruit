@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruit_hup/Core/services/shared_prefrences_singlton.dart';
 import 'package:fruit_hup/Core/utils/app_text_styles.dart';
-import 'package:fruit_hup/Feature/Auth/Presentation/View/log_in.dart';
+import 'package:fruit_hup/Feature/Auth/Presentation/View/sig_in_body.dart';
 import 'package:fruit_hup/constance.dart';
 
 class PageViewItem extends StatelessWidget {

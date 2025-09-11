@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruit_hup/Core/error/exception.dart';
 
@@ -11,11 +12,38 @@ class FirebaseAuthService {
           .createUserWithEmailAndPassword(email: email, password: password);
       return credential.user!;
     } on FirebaseAuthException catch (e) {
-        print('FirebaseAuthException: ${e.code}');
+      log(
+        'Exception in FirebaseAuthService on Create Email And Password : ${e.code}',
+      );
+      print('FirebaseAuthException: ${e.code}');
       if (e.code == 'weak-password') {
         throw CustomException('كلمة المرور ضعيفة');
       } else if (e.code == 'email-already-in-use') {
         throw CustomException('لقد قمت بالتسجيل مسبقا');
+      } else if (e.code == 'network-request-failed') {
+        throw CustomException('تأكد من إتصالك بالانترنت');
+      } else {
+        throw CustomException('حدث خطأ أثناء التسجيل ,اعد المحاولة مرةاخرى');
+      }
+    } catch (e) {
+      throw CustomException('حدث خطأ أثناء التسجيل ,اعد المحاولة مرةاخرى');
+    }
+  }
+
+  Future<User> SignInWithEmailAndPassword(String email, String password) async {
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email.toLowerCase().trim(),
+        password: password,
+      );
+      return credential.user!;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        throw CustomException('الايميل او الباسورد غير صحيح');
+      } else if (e.code == 'wrong-password') {
+        throw CustomException('الايميل او الباسورد غير صحيح');
+      } else if (e.code == 'network-request-failed') {
+        throw CustomException('تأكد من إتصالك بالانترنت');
       } else {
         throw CustomException('حدث خطأ أثناء التسجيل ,اعد المحاولة مرةاخرى');
       }

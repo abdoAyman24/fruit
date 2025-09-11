@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hup/Core/Widget/custom_button.dart';
 import 'package:fruit_hup/Core/Widget/custom_text_form_field.dart';
+import 'package:fruit_hup/Core/helper_function/builder_Snack_Bare.dart';
 import 'package:fruit_hup/Feature/Auth/Presentation/View/Widget/have_an_acount.dart';
 import 'package:fruit_hup/Feature/Auth/Presentation/View/Widget/password_field.dart';
 import 'package:fruit_hup/Feature/Auth/Presentation/View/Widget/terms_condition_widget.dart';
@@ -20,6 +21,7 @@ class _SinUpViewBodyState extends State<SinUpViewBody> {
   late String userName, password, email;
   @override
   Widget build(BuildContext context) {
+    late bool isTermCondition = false;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -47,25 +49,36 @@ class _SinUpViewBodyState extends State<SinUpViewBody> {
               const SizedBox(height: 16),
               PasswordField(
                 onSave: (value) {
-                  password = value!; 
+                  password = value!;
                 },
               ),
               const SizedBox(height: 16),
-              TermsConditionWidget(),
+              TermsConditionWidget(
+                onChange: (value) {
+                  isTermCondition = value;
+                },
+              ),
               const SizedBox(height: 42),
               CusttomButtom(
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    context.read<SinUpCubit>().CreateUserWithEmaiAndPAssword(
-                      email: email,
-                      password: password,
-                      name: userName,
-                    );
+                  if (isTermCondition) {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      context.read<SinUpCubit>().CreateUserWithEmaiAndPAssword(
+                        email: email,
+                        password: password,
+                        name: userName,
+                      );
+                    } else {
+                      setState(() {
+                        autovalidateMode = AutovalidateMode.always;
+                      });
+                    }
                   } else {
-                    setState(() {
-                      autovalidateMode = AutovalidateMode.always;
-                    });
+                    builderSnackBare(
+                      context,
+                      'يجب عليك الموافقة على الشروط والأحكام',
+                    );
                   }
                 },
                 text: 'إنشاء حساب جديد',
