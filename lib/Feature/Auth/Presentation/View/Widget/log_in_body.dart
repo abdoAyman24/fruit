@@ -71,10 +71,9 @@ class _SingInBodyState extends State<SingInBody> {
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
-                          context.read<SignInCubit>().SignInWithEmailAndPassword(
-                            email,
-                            password,
-                          );
+                          context
+                              .read<SignInCubit>()
+                              .SignInWithEmailAndPassword(email, password);
                         } else {
                           autovalidateMode = AutovalidateMode.always;
                         }
@@ -95,7 +94,9 @@ class _SingInBodyState extends State<SingInBody> {
                     CustomButtonSocial(
                       image: Assets.imageGoogleIcon,
                       text: 'تسجيل بواسطة جوجل',
-                      onPressed: () {},
+                      onPressed: () {
+                        context.read<SignInCubit>().SignInWithGoogle();
+                      },
                     ),
                     const SizedBox(height: 16),
                     CustomButtonSocial(

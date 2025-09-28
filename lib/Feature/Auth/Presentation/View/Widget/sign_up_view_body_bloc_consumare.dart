@@ -15,7 +15,8 @@ class SignUpViewBodyBlocConsumar extends StatelessWidget {
         if (state is SignUpFailure) {
           builderSnackBare(context, state.errorMessage);
         }
-         if (state is SinUpSucces) {
+        if (state is SinUpSucces) {
+          Navigator.of(context).pop();
           builderSnackBare(context, 'تم إنشاء الحساب بنجاح ');
         }
       },
@@ -27,6 +28,4 @@ class SignUpViewBodyBlocConsumar extends StatelessWidget {
       },
     );
   }
-
-  
 }
