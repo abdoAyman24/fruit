@@ -3,8 +3,8 @@ import 'package:fruit_hup/Feature/Home/Presentation/Views/Widgets/nave_bar_item.
 import 'package:fruit_hup/Feature/Home/domain/entity/navigation_bar_item_entity.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({super.key});
-
+  const CustomBottomNavigationBar({super.key, required this.valueChanged});
+  final ValueChanged valueChanged;
   @override
   State<CustomBottomNavigationBar> createState() =>
       _CustomBottomNavigationBarState();
@@ -45,6 +45,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                 Future.delayed(Duration(milliseconds: 300), () {
                   setState(() {
                     SelectedIndex = index;
+                    widget.valueChanged (index);
                   });
                 });
               },
@@ -59,9 +60,3 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     );
   }
 }
-
-
-
-
-
-

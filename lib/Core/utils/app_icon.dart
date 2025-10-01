@@ -34,6 +34,10 @@ class Assets {
   /// assets/image/feature_item_background.svg
   static const String imageFeatureItemBackground = "assets/image/feature_item_background.svg";
 
+  /// Assets for imageFilter2
+  /// assets/image/filter2.svg
+  static const String imageFilter2 = "assets/image/filter2.svg";
+
   /// Assets for imageFilterIcon
   /// assets/image/filter_icon.svg
   static const String imageFilterIcon = "assets/image/filter_icon.svg";

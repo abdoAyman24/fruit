@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hup/Core/helper_function/builder_Snack_Bare.dart';
 import 'package:fruit_hup/Feature/Auth/Presentation/View/Widget/log_in_body.dart';
 import 'package:fruit_hup/Feature/Auth/Presentation/manager/signIn%20Cubit/sign_in_cubit.dart';
-import 'package:fruit_hup/Feature/Home/Presentation/Views/home_view.dart';
+import 'package:fruit_hup/Feature/Home/Presentation/Views/main_view.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class SigInBodyBlocConsumar extends StatelessWidget {
@@ -17,7 +17,7 @@ class SigInBodyBlocConsumar extends StatelessWidget {
           builderSnackBare(context, state.errorMessage);
         }
         if (state is SignInSuccess) {
-          Navigator.of(context).pushNamed(HomeView.routeName);
+          Navigator.of(context).pushNamed(MainView.routeName);
           builderSnackBare(context, 'تم تسجيل الدخول بنجاح');
         }
       },

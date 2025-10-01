@@ -1,81 +1,97 @@
-import 'dart:io';
 
 import 'package:fruit_hup/Core/entity/product_entity.dart';
+import 'package:fruit_hup/Core/entity/review_entity.dart';
+import 'package:fruit_hup/Core/helper_function/average_rating_count.dart';
 import 'package:fruit_hup/Core/model/review_model.dart';
 
-
-
-class AddProductModel {
+class ProductModel {
   final String productName;
   final String description;
   final String productId;
-  final File productImage;
   final num productPrice;
   final String? imageUrl;
   final int expirationMonth;
   final int numberOfCalories;
-   final num sellingCount;
+  final num sellingCount;
   final int unitAmount;
   final bool isFeature;
-
+  final num averageRating;
   final bool isOrganic;
   final num avgAmount;
   final num ratingCount;
   final List<ReviewModel> review;
 
-  AddProductModel({
+  ProductModel({
     required this.description,
     required this.review,
     required this.productName,
     required this.productId,
-    required this.productImage,
     required this.productPrice,
-    this.imageUrl,
-    this.sellingCount = 0,
+    required this.imageUrl,
+    required this.averageRating,
+    required this.sellingCount,
     required this.expirationMonth,
     required this.numberOfCalories,
     required this.unitAmount,
-    this.isFeature = false,
+    required this.isFeature ,
 
-    this.isOrganic = false,
-    this.avgAmount = 0,
-    this.ratingCount = 0,
+   required this.isOrganic ,
+  required  this.avgAmount ,
+   required this.ratingCount ,
   });
 
-  factory AddProductModel.fromAddProductEntity(ProductEntity entity) {
-    return AddProductModel(
-      review: entity.review.map((e) => ReviewModel.formEntity(e)).toList(),
-      productName: entity.productName,
-      description: entity.description,
-      productId: entity.productId,
-      productImage: entity.productImage,
-      productPrice: entity.productPrice,
-      expirationMonth: entity.expirationMonth,
-      numberOfCalories: entity.numberOfCalories,
-      unitAmount: entity.unitAmount,
-      isOrganic: entity.isOrganic,
-      isFeature: entity.isFeature,
-      avgAmount: entity.avgAmount,
-      ratingCount: entity.ratingCount,
-      imageUrl: entity.imageUrl,
+  factory ProductModel.fromJson(Map<String, dynamic> map) {
+    return ProductModel(
+      review: List<ReviewModel>.from(
+        map['review']?.map((x) => ReviewModel.fromJson(x)),
+      ),
+      productName: map['name'],
+      averageRating: averageRatingcount(map['review'] !=null? List<ReviewModel>.from(
+        map['review']?.map((x) => ReviewModel.fromJson(x)),
+      ) : []),
+      description: map['description'],
+      sellingCount: map['sellingCount'],
+      productId: map['id'],
+      productPrice: map['price'],
+      imageUrl: map['url'],
+      expirationMonth: map['expirationMonth'],
+      numberOfCalories: map['numberOfCalories'],
+      unitAmount: map['unitAmount'],
+      isOrganic: map['isOrganic'],
+      isFeature: map['isFeature'],
+      avgAmount: map['avgAmount'] ,
+      ratingCount: map['ratingCount'] ,
     );
   }
-  toMap() {
-    return {
-      'name': productName,
-      'description': description,
-      'id': productId,
-      'pricr': productPrice,
-      'url': imageUrl,
-      'ratingCount': ratingCount,
-      'avgAmount': avgAmount,
-      'isOrganic': isOrganic,
-      'unitAmount': unitAmount,
-      'numberOfCalories': numberOfCalories,
-      'expirationMonth': expirationMonth,
-      'review': review.map((e) => e.toJson()).toList(),
-      'imageUrl': imageUrl,
-      'isFeature': isFeature,
-    };
+
+  ProductEntity toEntity() {
+    return ProductEntity(
+      review: review
+          .map(
+            (e) => ReviewEntity(
+              name: e.name,
+              image: e.image,
+              rate: e.rate,
+              date: e.date,
+              descreption: e.descreption,
+            ),
+          )
+          .toList(),
+      productName: productName,
+      description: description,
+      productId: productId,
+      productPrice: productPrice,
+      expirationMonth: expirationMonth,
+      numberOfCalories: numberOfCalories,
+      unitAmount: unitAmount,
+      isOrganic: isOrganic,
+      isFeature: isFeature,
+      avgAmount: avgAmount,
+      ratingCount: ratingCount,
+      imageUrl: imageUrl,
+    
+    );
   }
 }
+
+

@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hup/Core/cubit/products_cubit/products_cubit.dart';
 import 'package:fruit_hup/Feature/Home/Presentation/Views/Widgets/best_sellar.dart';
+import 'package:fruit_hup/Feature/Home/Presentation/Views/Widgets/products_view_bloc_builder.dart';
 import 'package:fruit_hup/Feature/Home/Presentation/Views/Widgets/custom_home_app_bar.dart';
 import 'package:fruit_hup/Feature/Home/Presentation/Views/Widgets/feature_list.dart';
-import 'package:fruit_hup/Feature/Home/Presentation/Views/Widgets/fruit_build_gradel.dart';
-import 'package:fruit_hup/Feature/Home/Presentation/Views/Widgets/search_form_field.dart';
 
-class HomeViewBody extends StatelessWidget {
+import 'search_form_field.dart';
+
+class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
+
+  @override
+  State<HomeViewBody> createState() => _HomeViewBodyState();
+}
+
+class _HomeViewBodyState extends State<HomeViewBody> {
+  @override
+  void initState() {
+    context.read<ProductsCubit>().getBestSellingProducts();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +43,7 @@ class HomeViewBody extends StatelessWidget {
               ],
             ),
           ),
-          FruitBuildGradel(),
+          ProductsViewBlocBuilder(),
         ],
       ),
     );
