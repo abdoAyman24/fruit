@@ -6,17 +6,18 @@ class CustomAppBarView extends StatelessWidget {
   const CustomAppBarView({
     super.key,
     required this.title,
-    this.visibleBackArrow = true,
+    this.showBackArrow = true,  this.showNotification= true,
   });
   final String title;
-  final bool visibleBackArrow;
+  final bool showBackArrow;
+  final bool showNotification;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Visibility(
-          visible: visibleBackArrow,
+          visible: showBackArrow,
           child: IconButton(
             onPressed: () {
               Navigator.of(context).pop();
@@ -25,7 +26,9 @@ class CustomAppBarView extends StatelessWidget {
           ),
         ),
         Text(title, textAlign: TextAlign.center, style: AppText.bold19),
-        NotificationAppBar(),
+        Visibility(
+          visible: showNotification,
+          child: NotificationAppBar()),
       ],
     );
   }

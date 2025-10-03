@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hup/Core/entity/product_entity.dart';
 import 'package:fruit_hup/Core/utils/app_color.dart';
 import 'package:fruit_hup/Core/utils/app_text_styles.dart';
+import 'package:fruit_hup/Feature/Home/Presentation/manager/Cart_Cubit/cart_cubit.dart';
 
 class FruitItem extends StatelessWidget {
   const FruitItem({super.key, required this.product});
@@ -30,11 +32,9 @@ class FruitItem extends StatelessWidget {
               const SizedBox(height: 20),
               Flexible(
                 child: Center(
-                  child:product.imageUrl !=null ? Image.network(product.imageUrl!, fit: BoxFit.fill) : Container(
-                    color: Colors.grey,
-                    width: 100,
-                    height: 100,
-                  ),
+                  child: product.imageUrl != null
+                      ? Image.network(product.imageUrl!, fit: BoxFit.fill)
+                      : Container(color: Colors.grey, width: 100, height: 100),
                 ),
               ),
               const SizedBox(height: 20),
@@ -72,9 +72,14 @@ class FruitItem extends StatelessWidget {
                   ),
                   textAlign: TextAlign.right,
                 ),
-                trailing: CircleAvatar(
-                  backgroundColor: appColor.primary,
-                  child: Icon(Icons.add, color: Colors.white),
+                trailing: GestureDetector(
+                  onTap: () {
+                    context.read<CartCubit>().addProductToCart(product);
+                  },
+                  child: CircleAvatar(
+                    backgroundColor: appColor.primary,
+                    child: Icon(Icons.add, color: Colors.white),
+                  ),
                 ),
               ),
             ],

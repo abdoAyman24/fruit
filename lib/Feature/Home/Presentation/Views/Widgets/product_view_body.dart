@@ -32,7 +32,7 @@ class _ProductViewBodyState extends State<ProductViewBody> {
             child: Column(
               children: [
                 SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                CustomAppBarView(title: 'المنتجات', visibleBackArrow: false),
+                CustomAppBarView(title: 'المنتجات', showBackArrow: false),
                 const SizedBox(height: 16),
                 SearchField(),
                 const SizedBox(height: 16),

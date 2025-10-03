@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hup/Feature/Home/Presentation/Views/Widgets/custom_bottom_navigation_bar.dart';
-import 'package:fruit_hup/Feature/Home/Presentation/Views/Widgets/home_view.dart';
-import 'package:fruit_hup/Feature/Home/Presentation/Views/Widgets/product_view.dart';
+import 'package:fruit_hup/Feature/Home/Presentation/Views/Widgets/main_view_body_bloc_listner.dart';
+
+import 'package:fruit_hup/Feature/Home/Presentation/manager/Cart_Cubit/cart_cubit.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -16,21 +18,16 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        bottomNavigationBar: CustomBottomNavigationBar(
-          valueChanged: (value) {
-            currentIndex = value;
-            setState(() {
-              
-            });
-          },
-        ),
-        body: IndexedStack(
-          index: currentIndex,
-          children: [
-            HomeView(),
-            ProductView(),
-          ],
+      child: BlocProvider(
+        create: (context) => CartCubit(),
+        child: Scaffold(
+          bottomNavigationBar: CustomBottomNavigationBar(
+            valueChanged: (value) {
+              currentIndex = value;
+              setState(() {});
+            },
+          ),
+          body: MAinViewBodyBlocListner(currentIndex: currentIndex),
         ),
       ),
     );
