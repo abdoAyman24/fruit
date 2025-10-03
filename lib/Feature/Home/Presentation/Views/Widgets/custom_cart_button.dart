@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hup/Core/Widget/custom_button.dart';
 import 'package:fruit_hup/Feature/Home/Presentation/manager/Cart_Cubit/cart_cubit.dart';
 import 'package:fruit_hup/Feature/Home/Presentation/manager/cart_item_cubit/cart_item_cubit.dart';
+import 'package:fruit_hup/Feature/pay/presentation/View/pay_view.dart';
 
 class CustomCartButton extends StatelessWidget {
   const CustomCartButton({super.key});
@@ -16,7 +17,9 @@ class CustomCartButton extends StatelessWidget {
           left: 16,
           right: 16,
           child: CusttomButtom(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(PayView.routeName);
+            },
             text:
                 'الدفع  ${context.watch<CartCubit>().cartEntity.getSumOfProduct()} جنيه',
           ),

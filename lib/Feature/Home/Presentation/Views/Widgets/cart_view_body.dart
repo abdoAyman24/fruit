@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruit_hup/Core/Widget/custom_app_bar_view.dart';
+import 'package:fruit_hup/Core/Widget/custom_app_bar.dart';
 import 'package:fruit_hup/Feature/Home/Presentation/Views/Widgets/cart_item_header.dart';
 import 'package:fruit_hup/Feature/Home/Presentation/Views/Widgets/cart_item_list.dart';
 import 'package:fruit_hup/Feature/Home/Presentation/Views/Widgets/custom_cart_button.dart';
@@ -18,8 +18,8 @@ class CartViewBody extends StatelessWidget {
             SliverToBoxAdapter(
               child: Column(
                 children: [
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                  CustomAppBarView(title: 'السلة', showNotification: false),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                  CustomAppBar(title: 'السلة', context: context),
                   const SizedBox(height: 16),
                   CartItemHeader(),
                   const SizedBox(height: 16),

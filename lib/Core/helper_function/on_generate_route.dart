@@ -5,6 +5,7 @@ import 'package:fruit_hup/Feature/BestSelling/Presentation/View/best_selling_vie
 import 'package:fruit_hup/Feature/Home/Presentation/Views/main_view.dart';
 import 'package:fruit_hup/Feature/Splash/Presentaion/View/splash_view.dart';
 import 'package:fruit_hup/Feature/onBording/Presentation/View/on_bording_view.dart';
+import 'package:fruit_hup/Feature/pay/presentation/View/pay_view.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -18,7 +19,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => BestSellingView());
     case LogIn.routeName:
       return MaterialPageRoute(builder: (context) => LogIn());
-
+    case PayView.routeName:
+      return MaterialPageRoute(builder: (context) => PayView());
     case OnBordingView.routeName:
       return MaterialPageRoute(builder: (context) => OnBordingView());
     default:

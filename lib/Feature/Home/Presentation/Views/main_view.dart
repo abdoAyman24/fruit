@@ -17,17 +17,19 @@ class _MainViewState extends State<MainView> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: BlocProvider(
-        create: (context) => CartCubit(),
-        child: Scaffold(
-          bottomNavigationBar: CustomBottomNavigationBar(
-            valueChanged: (value) {
-              currentIndex = value;
-              setState(() {});
-            },
+    return Scaffold(
+      body: SafeArea(
+        child: BlocProvider(
+          create: (context) => CartCubit(),
+          child: Scaffold(
+            bottomNavigationBar: CustomBottomNavigationBar(
+              valueChanged: (value) {
+                currentIndex = value;
+                setState(() {});
+              },
+            ),
+            body: MAinViewBodyBlocListner(currentIndex: currentIndex),
           ),
-          body: MAinViewBodyBlocListner(currentIndex: currentIndex),
         ),
       ),
     );
